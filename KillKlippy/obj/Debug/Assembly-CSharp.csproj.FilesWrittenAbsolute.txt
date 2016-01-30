@@ -1,0 +1,17 @@
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/obj/Debug/Assembly-CSharp.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/UnityEngine.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/UnityEditor.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Mono.Cecil.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Unity.DataContract.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Mono.Cecil.Mdb.dll
