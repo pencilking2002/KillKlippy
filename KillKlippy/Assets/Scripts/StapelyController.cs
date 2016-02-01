@@ -13,6 +13,7 @@ public class StapelyController : MonoBehaviour {
 	{
 		Happy,
 		Neutral,
+		Sad,
 		Angry,
 		FlamingMad
 	}
