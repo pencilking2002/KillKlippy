@@ -17,28 +17,41 @@ public class Dialogue : MonoBehaviour
 	public RectTransform yesBTN_RT;
 	public RectTransform noBTN_RT;
 
+	private GameObject Stapely;
+	private Transform stapelyStartingSpot;
+
 	private Vector2 default_YesBTN_Pos;
 	private Vector2 default_NoBTN_Pos;
 
 	public DialogueNode[] Nodes;
 	private DialogueNode currentNode = null;			// What is the current node?
 
-
 	private float clickedTime;
 	private float clickTimeBuffer = 1.0f;
 
 	private void Start ()
 	{
-		SetDefaultButtonPositions();
+		Stapely = GameObject.FindGameObjectWithTag("Stapely");
+		stapelyStartingSpot = GameObject.FindGameObjectWithTag("StapelyStartingSpot").transform;
 
-		// Hide buttons
-		DisplayButtons(false);
+		// Hide the text panel at first
+		DisplayDialoguePanel(false, false);
 
-		// Load the panel with the node text
-		NextNode(currentNodeID);
+		LeanTween.move(Stapely, stapelyStartingSpot.position, 1.0f)
+			.setEase(LeanTweenType.easeInOutElastic)
+			.setOnComplete(() => {
 
-		// Tween in the dialogue window
-		DisplayDialoguePanel(true);
+				SetDefaultButtonPositions();
+
+				// Hide buttons
+				DisplayButtons(false);
+
+				// Load the panel with the furstnode text
+				NextNode(currentNodeID);
+
+				// Then tween it in
+				DisplayDialoguePanel(true);
+			});
 	}
 
 	private void Update ()
@@ -99,19 +112,34 @@ public class Dialogue : MonoBehaviour
 		noBTN.gameObject.SetActive(display);
 	}
 
-	private void DisplayDialoguePanel(bool display)
+	private void DisplayDialoguePanel(bool display, bool tween = true)
 	{
+
 		if (display)
 		{
-			LeanTween.scale(stapelyTextPanel, Vector3.one, 1f)
-				.setFrom(Vector3.zero)
-				.setEase(LeanTweenType.easeInOutExpo);
+			if (tween)
+			{
+				LeanTween.scale(stapelyTextPanel, Vector3.one, 1f)
+					.setFrom(Vector3.zero)
+					.setEase(LeanTweenType.easeInOutExpo);
+			}
+			else
+			{
+				stapelyTextPanel.localScale = Vector3.one;
+			}
 		}
 		else
 		{
-			LeanTween.scale(stapelyTextPanel, Vector3.zero, 1f)
-				.setFrom(Vector3.one)
-				.setEase(LeanTweenType.easeInOutExpo);
+			if (tween)
+			{
+				LeanTween.scale(stapelyTextPanel, Vector3.zero, 1f)
+					.setFrom(Vector3.one)
+					.setEase(LeanTweenType.easeInOutExpo);
+			}
+			else
+			{
+				stapelyTextPanel.localScale = Vector3.zero;
+			}
 		}
 	}
 
