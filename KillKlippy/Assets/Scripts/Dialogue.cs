@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class Dialogue : MonoBehaviour
 
 	private GameObject Stapely;
 	private Transform stapelyStartingSpot;
+	private Transform stapelyPuzzleSpot;
+
 
 	private Vector2 default_YesBTN_Pos;
 	private Vector2 default_NoBTN_Pos;
@@ -33,6 +36,7 @@ public class Dialogue : MonoBehaviour
 	{
 		Stapely = GameObject.FindGameObjectWithTag("Stapely");
 		stapelyStartingSpot = GameObject.FindGameObjectWithTag("StapelyStartingSpot").transform;
+		stapelyPuzzleSpot = GameObject.FindGameObjectWithTag("StapelyPuzzleSpot").transform;
 
 		// Hide the text panel at first
 		DisplayDialoguePanel(false, false);
@@ -57,6 +61,9 @@ public class Dialogue : MonoBehaviour
 	private void Update ()
 	{
 		// If current node is waiting for a click, move to the next node
+		if (Puzzle.currentPuzzle != null && Puzzle.currentPuzzle.state == Puzzle.PuzzleState.Doing)
+			return;
+
 		if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
 		{
 			ClickNextNode();
@@ -112,16 +119,17 @@ public class Dialogue : MonoBehaviour
 		noBTN.gameObject.SetActive(display);
 	}
 
-	private void DisplayDialoguePanel(bool display, bool tween = true)
+	private void DisplayDialoguePanel(bool display, bool tween = true, Action callback = null)
 	{
 
 		if (display)
 		{
 			if (tween)
 			{
-				LeanTween.scale(stapelyTextPanel, Vector3.one, 1f)
+				LeanTween.scale(stapelyTextPanel, Vector3.one, 0.5f)
 					.setFrom(Vector3.zero)
-					.setEase(LeanTweenType.easeInOutExpo);
+					.setEase(LeanTweenType.easeInOutExpo)
+					.setOnComplete(callback);
 			}
 			else
 			{
@@ -132,14 +140,36 @@ public class Dialogue : MonoBehaviour
 		{
 			if (tween)
 			{
-				LeanTween.scale(stapelyTextPanel, Vector3.zero, 1f)
+				LeanTween.scale(stapelyTextPanel, Vector3.zero, 0.5f)
 					.setFrom(Vector3.one)
-					.setEase(LeanTweenType.easeInOutExpo);
+					.setEase(LeanTweenType.easeInOutExpo)
+					.setOnComplete(callback);
 			}
 			else
 			{
 				stapelyTextPanel.localScale = Vector3.zero;
 			}
+		}
+	}
+
+	private void DisplayDialoguePanel(bool display, Action callback)
+	{
+
+		if (display)
+		{
+			LeanTween.scale(stapelyTextPanel, Vector3.one, 0.5f)
+				.setFrom(Vector3.zero)
+				.setEase(LeanTweenType.easeInOutExpo)
+				.setOnComplete(callback);
+
+		}
+		else
+		{
+			LeanTween.scale(stapelyTextPanel, Vector3.zero, 0.5f)
+				.setFrom(Vector3.one)
+				.setEase(LeanTweenType.easeInOutExpo)
+				.setOnComplete(callback);
+		
 		}
 	}
 
@@ -189,7 +219,13 @@ public class Dialogue : MonoBehaviour
 		if (currentNode.clickTriggerPuzzle)
 		{
 			print("Play puzzle");
-			PuzzleController.Instance.StartNewPuzzle();
+			DisplayDialoguePanel(false, () => {
+				LeanTween.moveX(Stapely, stapelyPuzzleSpot.position.x, 0.5f)
+					.setEase(LeanTweenType.easeInBack)
+					.setOnComplete(() => { 
+						PuzzleController.Instance.StartNewPuzzle();
+					});
+				});
 		}
 
 		if (currentNode.clickToGoToNextNode /* || OneButtonVisible() */ /*&& Time.time > clickedTime + clickTimeBuffer*/)
