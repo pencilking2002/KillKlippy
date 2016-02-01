@@ -15,3 +15,5 @@
 /Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/romansharf/DropboxOld/projects/KillKlippy/Repo/KillKlippy/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
